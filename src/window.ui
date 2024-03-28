@@ -3,8 +3,8 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="Adw" version="1.0"/>
   <template class="LumosWindow" parent="AdwApplicationWindow">
-    <property name="default-width">480</property>
-    <property name="default-height">800</property>
+    <property name="default-width">360</property>
+    <property name="default-height">640</property>
     <property name="content">
       <object class="AdwToolbarView">
         <child type="top">
@@ -36,7 +36,7 @@
                     <property name="use-underline">true</property>
                     <property name="child">
                       <object class="GtkLabel" id="aperture-label">
-                        <property name="label">Aperture priority mode!</property>
+                        <property name="label" translatable="yes">Aperture priority mode!</property>
                         <style>
                           <class name="title-1"/>
                         </style>
@@ -53,11 +53,60 @@
                     <property name="icon-name">camera-timer-symbolic</property>
                     <property name="use-underline">true</property>
                     <property name="child">
-                      <object class="GtkLabel" id="time-label">
-                        <property name="label">Time priority mode!</property>
-                        <style>
-                          <class name="title-1"/>
-                        </style>
+                      <object class="GtkBox">
+                        <property name="orientation">1</property>
+                        <property name="valign">3</property>
+                        <property name="halign">3</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">camera-timer-symbolic</property>
+                            <property name="pixel-size">64</property>
+                            <property name="margin-bottom">30</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label" translatable="yes">Time priority</property>
+                            <style>
+                              <class name="title-1"/>
+                            </style>
+                            <property name="margin-bottom">30</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label" translatable="yes">Set this aperture value:</property>
+                            <property name="margin-bottom">15</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="time-priority-aperture-label">
+                            <property name="label" translatable="no">f/11</property>
+                            <style>
+                              <class name="title-1"/>
+                            </style>
+                            <property name="margin-bottom">30</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label" translatable="yes">Your camera's time setting is:</property>
+                            <property name="margin-bottom">15</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkDropDown" id="time-priority-speed-dropdown">
+                            <property name="model">
+                              <object class="GtkStringList">
+                                <items>
+                                  <item translatable="yes">1/60</item>
+                                  <item translatable="yes">1/125</item>
+                                  <item translatable="yes">1/250</item>
+                                </items>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
                       </object>
                     </property>
                   </object>
@@ -72,11 +121,45 @@
                     <property name="use-underline">true</property>
                     <property name="child">
                       <object class="GtkLabel" id="manual-label">
-                        <property name="label">Manual mode!</property>
+                        <property name="label" translatable="yes">Manual mode!</property>
                         <style>
                           <class name="title-1"/>
                         </style>
                       </object>
+                    </property>
+                  </object>
+                </child>
+
+                <!-- Light page -->
+                <child>
+                  <object class="AdwViewStackPage" id="light-measure-page">
+                    <property name="name">light-measure-page</property>
+                    <property name="title" translatable="true">Light</property>
+                    <property name="icon-name">lightbulb-symbolic</property>
+                    <property name="use-underline">true</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="orientation">1</property>
+                        <property name="valign">3</property>
+                        <property name="halign">3</property>
+                        <child>
+                          <object class="GtkImage" id="lux-icon">
+                            <property name="icon-name">lightbulb-symbolic</property>
+                            <property name="pixel-size">128</property>
+                            <property name="margin-bottom">30</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="lux-label">
+                            <property name="label" translatable="no">XXX Lux</property>
+                            <style>
+                              <class name="title-1"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+
+
                     </property>
                   </object>
                 </child>
