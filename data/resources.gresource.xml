@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+
+  <!-- Symbolic icons -->
+  <gresource prefix="/eu/ichibi/Lumos">
+    <file preprocess="xml-stripblanks">icons/scalable/status/encoder-knob-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/camera-timer-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/camera-shutter-symbolic.svg</file>
+  </gresource>
+
+</gresources>

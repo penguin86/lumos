@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=lumos
+Exec=lumos
+Icon=eu.ichibi.Lumos
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

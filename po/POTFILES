@@ -1,0 +1,6 @@
+data/eu.ichibi.Lumos.desktop.in
+data/eu.ichibi.Lumos.metainfo.xml.in
+data/eu.ichibi.Lumos.gschema.xml
+src/main.py
+src/window.py
+src/window.ui
