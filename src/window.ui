@@ -99,9 +99,24 @@
                             <property name="model">
                               <object class="GtkStringList">
                                 <items>
-                                  <item translatable="yes">1/60</item>
-                                  <item translatable="yes">1/125</item>
-                                  <item translatable="yes">1/250</item>
+                                  <item translatable="no">1/ 4000</item>
+                                  <item translatable="no">1/ 2000</item>
+                                  <item translatable="no">1/ 1000</item>
+                                  <item translatable="no">1/ 500</item>
+                                  <item translatable="no">1/ 250</item>
+                                  <item translatable="no">1/ 125</item>
+                                  <item translatable="no">1/ 60</item>
+                                  <item translatable="no">1/ 30</item>
+                                  <item translatable="no">1/ 15</item>
+                                  <item translatable="no">1/ 8</item>
+                                  <item translatable="no">1/ 4</item>
+                                  <item translatable="no">1/ 2</item>
+                                  <item translatable="no">1 sec</item>
+                                  <item translatable="no">2 sec</item>
+                                  <item translatable="no">4 sec</item>
+                                  <item translatable="no">8 sec</item>
+                                  <item translatable="no">15 sec</item>
+                                  <item translatable="no">30 sec</item>
                                 </items>
                               </object>
                             </property>
