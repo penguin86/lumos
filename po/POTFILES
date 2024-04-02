@@ -4,3 +4,5 @@ data/eu.ichibi.Lumos.gschema.xml
 src/main.py
 src/window.py
 src/window.ui
+src/widgets/time_priority_page.py
+src/widgets/time_priority_page.ui

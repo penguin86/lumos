@@ -53,75 +53,7 @@
                     <property name="icon-name">camera-timer-symbolic</property>
                     <property name="use-underline">true</property>
                     <property name="child">
-                      <object class="GtkBox">
-                        <property name="orientation">1</property>
-                        <property name="valign">3</property>
-                        <property name="halign">3</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">camera-timer-symbolic</property>
-                            <property name="pixel-size">64</property>
-                            <property name="margin-bottom">30</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Time priority</property>
-                            <style>
-                              <class name="title-1"/>
-                            </style>
-                            <property name="margin-bottom">30</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Set this aperture value:</property>
-                            <property name="margin-bottom">15</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="time-priority-aperture-label">
-                            <property name="label" translatable="no">f/11</property>
-                            <style>
-                              <class name="title-1"/>
-                            </style>
-                            <property name="margin-bottom">30</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Your camera's time setting is:</property>
-                            <property name="margin-bottom">15</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkDropDown" id="time-priority-speed-dropdown">
-                            <property name="model">
-                              <object class="GtkStringList">
-                                <items>
-                                  <item translatable="no">1/ 4000</item>
-                                  <item translatable="no">1/ 2000</item>
-                                  <item translatable="no">1/ 1000</item>
-                                  <item translatable="no">1/ 500</item>
-                                  <item translatable="no">1/ 250</item>
-                                  <item translatable="no">1/ 125</item>
-                                  <item translatable="no">1/ 60</item>
-                                  <item translatable="no">1/ 30</item>
-                                  <item translatable="no">1/ 15</item>
-                                  <item translatable="no">1/ 8</item>
-                                  <item translatable="no">1/ 4</item>
-                                  <item translatable="no">1/ 2</item>
-                                  <item translatable="no">1 sec</item>
-                                  <item translatable="no">2 sec</item>
-                                  <item translatable="no">4 sec</item>
-                                  <item translatable="no">8 sec</item>
-                                  <item translatable="no">15 sec</item>
-                                  <item translatable="no">30 sec</item>
-                                </items>
-                              </object>
-                            </property>
-                          </object>
-                        </child>
+                      <object class="TimePriorityPage" id="time-priority-page-widget">
                       </object>
                     </property>
                   </object>

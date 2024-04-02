@@ -26,6 +26,7 @@ gi.require_version('Adw', '1')
 
 from gi.repository import Gtk, Gio, Adw
 from .window import LumosWindow
+from .widgets_loader import registerWidgets
 
 
 class LumosApplication(Adw.Application):
@@ -44,6 +45,11 @@ class LumosApplication(Adw.Application):
         We raise the application's main window, creating it if
         necessary.
         """
+
+        # Register all widgets
+        registerWidgets();
+
+        # Create window
         win = self.props.active_window
         if not win:
             win = LumosWindow(application=self)

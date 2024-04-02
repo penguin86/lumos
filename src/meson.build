@@ -30,6 +30,8 @@ lumos_sources = [
   '__init__.py',
   'main.py',
   'window.py',
+  'widgets/widgets_loader.py',
+  'widgets/time_priority_page.py',
 ]
 
 install_data(lumos_sources, install_dir: moduledir)
