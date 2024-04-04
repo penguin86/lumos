@@ -35,6 +35,10 @@ class LumosApplication(Adw.Application):
     def __init__(self):
         super().__init__(application_id='eu.ichibi.Lumos',
                          flags=Gio.ApplicationFlags.DEFAULT_FLAGS)
+        # Load css
+        self.__base_css_resource = "{}/style.css".format(self.props.resource_base_path)
+
+        # Create actions
         self.create_action('quit', lambda *_: self.quit(), ['<primary>q'])
         self.create_action('about', self.on_about_action)
         self.create_action('preferences', self.on_preferences_action)
