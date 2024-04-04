@@ -1,0 +1,67 @@
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="adw" version="1.0"/>
+  <template class="AperturePriorityPage" parent="GtkBox">
+    <property name="orientation">1</property>
+    <property name="valign">3</property>
+    <property name="halign">3</property>
+    <child>
+      <object class="GtkImage">
+        <property name="icon-name">camera-shutter-symbolic</property>
+        <property name="pixel-size">64</property>
+        <property name="margin-bottom">30</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label" translatable="yes">Aperture priority</property>
+        <style>
+          <class name="title-1"/>
+        </style>
+        <property name="margin-bottom">30</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label" translatable="yes">Set this shutter speed:</property>
+        <property name="margin-bottom">15</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel" id="time-priority-aperture-label">
+        <property name="label" translatable="no">f/60</property>
+        <style>
+          <class name="lumos-big-result"/>
+        </style>
+        <property name="margin-bottom">30</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label" translatable="yes">Your camera's aperture setting is:</property>
+        <property name="margin-bottom">15</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkDropDown" id="time-priority-speed-dropdown">
+        <property name="model">
+          <object class="GtkStringList">
+            <items>
+              <item translatable="no">f/ 32</item>
+              <item translatable="no">f/ 22</item>
+              <item translatable="no">f/ 16</item>
+              <item translatable="no">f/ 11</item>
+              <item translatable="no">f/ 8</item>
+              <item translatable="no">f/ 5.6</item>
+              <item translatable="no">f/ 4</item>
+              <item translatable="no">f/ 2.8</item>
+              <item translatable="no">f/ 2</item>
+              <item translatable="no">f/ 1.4</item>
+            </items>
+          </object>
+        </property>
+      </object>
+    </child>
+  </template>
+</interface>
+

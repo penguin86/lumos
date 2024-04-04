@@ -35,11 +35,7 @@
                     <property name="icon-name">camera-shutter-symbolic</property>
                     <property name="use-underline">true</property>
                     <property name="child">
-                      <object class="GtkLabel" id="aperture-label">
-                        <property name="label" translatable="yes">Aperture priority mode!</property>
-                        <style>
-                          <class name="title-1"/>
-                        </style>
+                      <object class="AperturePriorityPage" id="aperture-priority-page-widget">
                       </object>
                     </property>
                   </object>
