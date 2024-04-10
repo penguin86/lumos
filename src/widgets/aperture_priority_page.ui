@@ -43,7 +43,7 @@
       </object>
     </child>
     <child>
-      <object class="GtkDropDown" id="time-priority-speed-dropdown">
+      <object class="GtkDropDown" id="aperture-priority-speed-dropdown">
         <property name="model">
           <object class="GtkStringList">
             <items>

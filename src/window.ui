@@ -63,11 +63,7 @@
                     <property name="icon-name">encoder-knob-symbolic</property>
                     <property name="use-underline">true</property>
                     <property name="child">
-                      <object class="GtkLabel" id="manual-label">
-                        <property name="label" translatable="yes">Manual mode!</property>
-                        <style>
-                          <class name="title-1"/>
-                        </style>
+                      <object class="ManualExposurePage" id="manual-page">
                       </object>
                     </property>
                   </object>

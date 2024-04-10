@@ -1,0 +1,126 @@
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="adw" version="1.0"/>
+  <template class="ManualExposurePage" parent="GtkBox">
+    <property name="orientation">1</property>
+    <property name="valign">3</property>
+    <property name="halign">3</property>
+    <child>
+      <object class="GtkImage">
+        <property name="icon-name">encoder-knob-symbolic</property>
+        <property name="pixel-size">64</property>
+        <property name="margin-bottom">30</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label" translatable="yes">Manual exposure</property>
+        <style>
+          <class name="title-1"/>
+        </style>
+        <property name="margin-bottom">30</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label" translatable="yes">Exposure:</property>
+        <property name="margin-bottom">15</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkProgressBar" id="first">
+        <property name="fraction">0.5</property>
+        <property name="show-text">false</property>
+        <property name="margin-bottom">5</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">0</property>
+        <property name="halign">0</property>
+        <property name="margin-bottom">20</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">encoder-knob-symbolic</property>
+            <property name="pixel-size">16</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">encoder-knob-symbolic</property>
+            <property name="pixel-size">16</property>
+            <property name="hexpand">true</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">encoder-knob-symbolic</property>
+            <property name="pixel-size">16</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label" translatable="yes">Shutter speed:</property>
+        <property name="margin-bottom">15</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkDropDown" id="time-priority-speed-dropdown">
+        <property name="model">
+          <object class="GtkStringList">
+            <items>
+              <item translatable="no">1/ 4000</item>
+              <item translatable="no">1/ 2000</item>
+              <item translatable="no">1/ 1000</item>
+              <item translatable="no">1/ 500</item>
+              <item translatable="no">1/ 250</item>
+              <item translatable="no">1/ 125</item>
+              <item translatable="no">1/ 60</item>
+              <item translatable="no">1/ 30</item>
+              <item translatable="no">1/ 15</item>
+              <item translatable="no">1/ 8</item>
+              <item translatable="no">1/ 4</item>
+              <item translatable="no">1/ 2</item>
+              <item translatable="no">1 sec</item>
+              <item translatable="no">2 sec</item>
+              <item translatable="no">4 sec</item>
+              <item translatable="no">8 sec</item>
+              <item translatable="no">15 sec</item>
+              <item translatable="no">30 sec</item>
+            </items>
+          </object>
+        </property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label" translatable="yes">Aperture:</property>
+        <property name="margin-top">20</property>
+        <property name="margin-bottom">15</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkDropDown" id="aperture-priority-speed-dropdown">
+        <property name="model">
+          <object class="GtkStringList">
+            <items>
+              <item translatable="no">f/ 32</item>
+              <item translatable="no">f/ 22</item>
+              <item translatable="no">f/ 16</item>
+              <item translatable="no">f/ 11</item>
+              <item translatable="no">f/ 8</item>
+              <item translatable="no">f/ 5.6</item>
+              <item translatable="no">f/ 4</item>
+              <item translatable="no">f/ 2.8</item>
+              <item translatable="no">f/ 2</item>
+              <item translatable="no">f/ 1.4</item>
+            </items>
+          </object>
+        </property>
+      </object>
+    </child>
+  </template>
+</interface>
+
