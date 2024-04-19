@@ -25,15 +25,20 @@ from .sensors_polling_timer import SensorsPollingTimer
 class LumosWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'LumosWindow'
 
-    #label = Gtk.Template.Child()
+    lux_label = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         # Start polling sensors
-        self.sensorsPollingTimer = SensorsPollingTimer(1, self.onSensorRead)
-        self.sensorsPollingTimer.run()
+        self.sensorsPollingTimer = SensorsPollingTimer(0.1, self.onSensorRead)
+        self.sensorsPollingTimer.start()
 
-    def onSensorRead(self, value):
+    def onSensorRead(self, value, unit):
         # Called when the light value changed
-	    print("Read {} lux".format(value))
+	    print("Read {} {}".format(value, unit))
+
+	    if self.lux_label:
+	        self.lux_label.set_label("{:.0f} {}".format(value, unit))
+
+

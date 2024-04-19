@@ -89,7 +89,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="lux-label">
+                          <object class="GtkLabel" id="lux_label">
                             <property name="label" translatable="no">XXX Lux</property>
                             <style>
                               <class name="title-1"/>

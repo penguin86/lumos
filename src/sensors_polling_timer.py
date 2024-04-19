@@ -39,5 +39,6 @@ class SensorsPollingTimer(Timer):
 			value = self.proxy.Get('(ss)', 'net.hadess.SensorProxy', 'LightLevel')
 			if (self.oldValue != value):
 				self.oldValue = value
-				self.function(value)    # Invoke callback
+				unit = self.proxy.Get('(ss)', 'net.hadess.SensorProxy', 'LightLevelUnit')
+				self.function(value, unit)    # Invoke callback
 
