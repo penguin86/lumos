@@ -19,6 +19,7 @@
 
 from gi.repository import Adw
 from gi.repository import Gtk
+from .sensors_polling_timer import SensorsPollingTimer
 
 @Gtk.Template(resource_path='/eu/ichibi/Lumos/window.ui')
 class LumosWindow(Adw.ApplicationWindow):
@@ -28,3 +29,11 @@ class LumosWindow(Adw.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        # Start polling sensors
+        self.sensorsPollingTimer = SensorsPollingTimer(1, self.onSensorRead)
+        self.sensorsPollingTimer.run()
+
+    def onSensorRead(self, value):
+        # Called when the light value changed
+	    print("Read {} lux".format(value))

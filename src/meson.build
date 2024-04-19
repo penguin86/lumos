@@ -30,6 +30,7 @@ lumos_sources = [
   '__init__.py',
   'main.py',
   'window.py',
+  'sensors_polling_timer.py',
   'widgets/widgets_loader.py',
   'widgets/time_priority_page.py',
   'widgets/aperture_priority_page.py',
