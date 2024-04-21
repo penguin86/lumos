@@ -20,12 +20,14 @@
 from gi.repository import Adw
 from gi.repository import Gtk
 from .sensors_polling_timer import SensorsPollingTimer
+from .ev_calculator import EVCalculator
 
 @Gtk.Template(resource_path='/eu/ichibi/Lumos/window.ui')
 class LumosWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'LumosWindow'
 
     lux_label = Gtk.Template.Child()
+    ev_label = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -34,11 +36,15 @@ class LumosWindow(Adw.ApplicationWindow):
         self.sensorsPollingTimer = SensorsPollingTimer(0.1, self.onSensorRead)
         self.sensorsPollingTimer.start()
 
-    def onSensorRead(self, value, unit):
+    def onSensorRead(self, value: float, unit: str):
         # Called when the light value changed
-	    print("Read {} {}".format(value, unit))
+        print("Read {} {}".format(value, unit))
 
-	    if self.lux_label:
-	        self.lux_label.set_label("{:.0f} {}".format(value, unit))
+        if self.lux_label:
+            self.lux_label.set_label("{:.0f} {}".format(value, unit))
 
+        # Convert lux to EV
+        ev = EVCalculator.luxToEV(value)
+        if self.ev_label:
+            self.ev_label.set_label("{:.1f} EV".format(ev))
 

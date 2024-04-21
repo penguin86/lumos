@@ -96,6 +96,14 @@
                             </style>
                           </object>
                         </child>
+                        <child>
+                          <object class="GtkLabel" id="ev_label">
+                            <property name="label" translatable="no">XXX EV</property>
+                            <style>
+                              <class name="title-1"/>
+                            </style>
+                          </object>"
+                        </child>
                       </object>
 
 
