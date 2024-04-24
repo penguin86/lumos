@@ -38,8 +38,6 @@ class LumosWindow(Adw.ApplicationWindow):
 
     def onSensorRead(self, value: float, unit: str):
         # Called when the light value changed
-        print("Read {} {}".format(value, unit))
-
         if self.lux_label:
             self.lux_label.set_label("{:.0f} {}".format(value, unit))
 

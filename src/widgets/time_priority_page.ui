@@ -29,7 +29,7 @@
     </child>
     <child>
       <object class="GtkLabel" id="time-priority-aperture-label">
-        <property name="label" translatable="no">f/11</property>
+        <property name="label" translatable="no">f/--</property>
         <style>
           <class name="lumos-big-result"/>
         </style>

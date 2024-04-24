@@ -9,6 +9,26 @@
       <object class="AdwToolbarView">
         <child type="top">
           <object class="AdwHeaderBar" id="header_bar">
+            <child type="start">
+              <!-- ISO Selector in header bar (left) -->
+              <object class="GtkDropDown" id="iso-dropdown">
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="no">ISO 50</item>
+                      <item translatable="no">ISO 100</item>
+                      <item translatable="no">ISO 200</item>
+                      <item translatable="no">ISO 400</item>
+                      <item translatable="no">ISO 800</item>
+                      <item translatable="no">ISO 1600</item>
+                      <item translatable="no">ISO 3200</item>
+                      <item translatable="no">ISO 6400</item>
+                    </items>
+                  </object>
+                </property>
+                <property name="selected">1</property> <!-- ISO 100 -->
+              </object>
+            </child>
             <child type="end">
               <object class="GtkMenuButton">
                 <property name="primary">True</property>
@@ -31,7 +51,7 @@
                   <!-- Aperture priority page -->
                   <object class="AdwViewStackPage" id="aperture-priority-page">
                     <property name="name">aperture-priority-page</property>
-                    <property name="title" translatable="true">Aperture priority</property>
+                    <property name="title" translatable="true">Aperture</property>
                     <property name="icon-name">camera-shutter-symbolic</property>
                     <property name="use-underline">true</property>
                     <property name="child">
@@ -45,7 +65,7 @@
                 <child>
                   <object class="AdwViewStackPage" id="time-priority-page">
                     <property name="name">time-priority-page</property>help
-                    <property name="title" translatable="true">Time priority</property>
+                    <property name="title" translatable="true">Time</property>
                     <property name="icon-name">camera-timer-symbolic</property>
                     <property name="use-underline">true</property>
                     <property name="child">
@@ -118,9 +138,12 @@
             <child>
               <object class="AdwViewSwitcher" id="switcher_title">
                 <property name="stack">stack</property>
-
+                <property name="margin-bottom">8</property>
+                <property name="margin-start">2</property>
+                <property name="margin-end">2</property>
               </object>
             </child>
+
           </object>
         </property>
       </object>
