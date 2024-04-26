@@ -51,6 +51,12 @@
                 <signal name="button-clicked" handler="showErrorDetails"/>"
               </object>
             </child>
+            <child>
+              <object class="AdwBanner" id="sensor_unit_error_banner">
+                <property name="title" translatable="true">Light sensor does not support absolute light measurement: unable to compute exposition</property>
+              </object>
+            </child>
+"
 
             <!-- Pages Stack -->
             <child>
@@ -127,7 +133,7 @@
                         </child>
                         <child>
                           <object class="GtkLabel" id="ev_label">
-                            <property name="label" translatable="no">XXX EV</property>
+                            <property name="label" translatable="no">-- EV</property>
                             <style>
                               <class name="title-1"/>
                             </style>

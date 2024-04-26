@@ -29,6 +29,7 @@ class LumosWindow(Adw.ApplicationWindow):
     lux_label = Gtk.Template.Child()
     ev_label = Gtk.Template.Child()
     error_banner = Gtk.Template.Child()
+    sensor_unit_error_banner = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -49,8 +50,14 @@ class LumosWindow(Adw.ApplicationWindow):
 
     def onSensorRead(self, value: float, unit: str):
         # Called when the light value changed
+
         if self.lux_label:
             self.lux_label.set_label("{:.0f} {}".format(value, unit))
+
+        # Check the unit is absolute ("lux"), otherwise there's no way to convert to an absolute EV value
+        if unit != "lux":
+            self.sensor_unit_error_banner.set_revealed(True)
+            return
 
         # Convert lux to EV
         ev = EVCalculator.luxToEV(value)
