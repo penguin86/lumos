@@ -17,8 +17,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Adw
-from gi.repository import Gtk
+from gi.repository import Adw, Gtk, GObject
 from .sensors_polling_timer import SensorsPollingTimer
 from .ev_calculator import EVCalculator
 
@@ -32,9 +31,16 @@ class LumosWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        # Register for window lifecycle events
+        self.connect("close-request", self.__on_close_request)
+
         # Start polling sensors
         self.sensorsPollingTimer = SensorsPollingTimer(0.1, self.onSensorRead)
         self.sensorsPollingTimer.start()
+
+    def __on_close_request(self, _obj: GObject.Object) -> None:
+        # On window destroyed.Stop polling sensors
+        self.sensorsPollingTimer.cancel()
 
     def onSensorRead(self, value: float, unit: str):
         # Called when the light value changed
