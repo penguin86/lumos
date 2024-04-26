@@ -25,17 +25,22 @@ from .ev_calculator import EVCalculator
 class LumosWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'LumosWindow'
 
+    # Labels
     lux_label = Gtk.Template.Child()
     ev_label = Gtk.Template.Child()
+    error_banner = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        self.lastError = None
 
         # Register for window lifecycle events
         self.connect("close-request", self.__on_close_request)
 
         # Start polling sensors
         self.sensorsPollingTimer = SensorsPollingTimer(0.1, self.onSensorRead)
+        self.sensorsPollingTimer.onError = self.onError
         self.sensorsPollingTimer.start()
 
     def __on_close_request(self, _obj: GObject.Object) -> None:
@@ -51,4 +56,25 @@ class LumosWindow(Adw.ApplicationWindow):
         ev = EVCalculator.luxToEV(value)
         if self.ev_label:
             self.ev_label.set_label("{:.1f} EV".format(ev))
+
+    def onError(self, e: Exception):
+        self.lastError = e
+        self.error_banner.set_revealed(True)
+
+    @Gtk.Template.Callback()
+    def showErrorDetails(self, _button: Gtk.Button) -> None:
+        # Called by error_banner button click signal
+        if "ServiceUnknown" in self.lastError.message or "UnknownMethod" in self.lastError.message:
+            dialogTitle = "No light sensor found"
+        else:
+            dialogTitle = "Unable to access D-Bus"
+
+        dialog = Adw.AlertDialog(
+            heading = dialogTitle,
+            body = self.lastError,
+            close_response="close",
+        )
+        dialog.add_response("close", "Close")
+        dialog.choose(self, None, None)
+
 

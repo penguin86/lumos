@@ -1,5 +1,6 @@
 from gi.repository import Gio, GLib
 from threading import Timer
+from enum import Enum
 
 # window.py
 #
@@ -20,7 +21,6 @@ from threading import Timer
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-
 # A timer for polling the light sensor via DBus.
 # Checks the sensor at a specific interval and runs a callback only when an update is detected.
 #
@@ -28,17 +28,30 @@ from threading import Timer
 # Instantiate it, then call run(interval_in_seconds, callback_function)
 # To stop it, call cancel()
 class SensorsPollingTimer(Timer):
+
     def run(self):
         # Setup
-        bus = Gio.bus_get_sync(Gio.BusType.SYSTEM, None)
-        self.proxy = Gio.DBusProxy.new_sync(bus,Gio.DBusProxyFlags.NONE,None,'net.hadess.SensorProxy','/net/hadess/SensorProxy','org.freedesktop.DBus.Properties', None)
-        self.oldValue = None
+        try:
+            bus = Gio.bus_get_sync(Gio.BusType.SYSTEM, None)
+            self.proxy = Gio.DBusProxy.new_sync(bus,Gio.DBusProxyFlags.NONE,None,'net.hadess.SensorProxy','/net/hadess/SensorProxy','org.freedesktop.DBus.Properties', None)
 
-        # Loop
-        while not self.finished.wait(self.interval):
-            value = self.proxy.Get('(ss)', 'net.hadess.SensorProxy', 'LightLevel')
-            if (self.oldValue != value):
-                self.oldValue = value
-                unit = self.proxy.Get('(ss)', 'net.hadess.SensorProxy', 'LightLevelUnit')
-                self.function(value, unit)    # Invoke callback
+            self.oldValue = None
+
+            # Loop
+            while not self.finished.wait(self.interval):
+                value = self.proxy.Get('(ss)', 'net.hadess.SensorProxy', 'LightLevel')
+                if (self.oldValue != value):
+                    self.oldValue = value
+                    unit = self.proxy.Get('(ss)', 'net.hadess.SensorProxy', 'LightLevelUnit')
+                    self.function(value, unit)    # Invoke callback
+
+        except Exception as e:
+            if not self.onError:
+                print("SensorsPollingTimer: error occurred, but no onError callback defined")
+                return
+
+            self.onError(e)
+
+    def setOnErrorListener(onError):
+        self.onError = onError
 

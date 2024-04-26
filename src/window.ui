@@ -43,6 +43,15 @@
           <object class="GtkBox">
             <property name="orientation">1</property>
 
+            <!-- Errors banner -->
+            <child>
+              <object class="AdwBanner" id="error_banner">
+                <property name="title" translatable="true">Unable to access light sensor</property>
+                <property name="button-label" translatable="true">Details</property>
+                <signal name="button-clicked" handler="showErrorDetails"/>"
+              </object>
+            </child>
+
             <!-- Pages Stack -->
             <child>
               <object class="AdwViewStack" id="stack">
