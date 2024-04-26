@@ -28,17 +28,17 @@ from threading import Timer
 # Instantiate it, then call run(interval_in_seconds, callback_function)
 # To stop it, call cancel()
 class SensorsPollingTimer(Timer):
-	def run(self):
-		# Setup
-		bus = Gio.bus_get_sync(Gio.BusType.SYSTEM, None)
-		self.proxy = Gio.DBusProxy.new_sync(bus,Gio.DBusProxyFlags.NONE,None,'net.hadess.SensorProxy','/net/hadess/SensorProxy','org.freedesktop.DBus.Properties', None)
-		self.oldValue = None
+    def run(self):
+        # Setup
+        bus = Gio.bus_get_sync(Gio.BusType.SYSTEM, None)
+        self.proxy = Gio.DBusProxy.new_sync(bus,Gio.DBusProxyFlags.NONE,None,'net.hadess.SensorProxy','/net/hadess/SensorProxy','org.freedesktop.DBus.Properties', None)
+        self.oldValue = None
 
-		# Loop
-		while not self.finished.wait(self.interval):
-			value = self.proxy.Get('(ss)', 'net.hadess.SensorProxy', 'LightLevel')
-			if (self.oldValue != value):
-				self.oldValue = value
-				unit = self.proxy.Get('(ss)', 'net.hadess.SensorProxy', 'LightLevelUnit')
-				self.function(value, unit)    # Invoke callback
+        # Loop
+        while not self.finished.wait(self.interval):
+            value = self.proxy.Get('(ss)', 'net.hadess.SensorProxy', 'LightLevel')
+            if (self.oldValue != value):
+                self.oldValue = value
+                unit = self.proxy.Get('(ss)', 'net.hadess.SensorProxy', 'LightLevelUnit')
+                self.function(value, unit)    # Invoke callback
 
