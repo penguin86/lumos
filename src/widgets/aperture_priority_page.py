@@ -24,3 +24,8 @@ from gi.repository import Gtk
 class AperturePriorityPage(Gtk.Box):
     __gtype_name__ = 'AperturePriorityPage'
 
+    def onValuesChanged(self, isoSpeed: int,  sensorValue: float, sensorUnit: str):
+        # Check the unit is absolute ("lux")
+        if sensorUnit != "lux":
+            return
+

@@ -11,7 +11,7 @@
           <object class="AdwHeaderBar" id="header_bar">
             <child type="start">
               <!-- ISO Selector in header bar (left) -->
-              <object class="GtkDropDown" id="iso-dropdown">
+              <object class="GtkDropDown" id="iso_dropdown">
                 <property name="model">
                   <object class="GtkStringList">
                     <items>
@@ -70,7 +70,7 @@
                     <property name="icon-name">camera-shutter-symbolic</property>
                     <property name="use-underline">true</property>
                     <property name="child">
-                      <object class="AperturePriorityPage" id="aperture-priority-page-widget">
+                      <object class="AperturePriorityPage" id="aperture_priority_page_widget">
                       </object>
                     </property>
                   </object>
@@ -84,7 +84,7 @@
                     <property name="icon-name">camera-timer-symbolic</property>
                     <property name="use-underline">true</property>
                     <property name="child">
-                      <object class="TimePriorityPage" id="time-priority-page-widget">
+                      <object class="TimePriorityPage" id="time_priority_page_widget">
                       </object>
                     </property>
                   </object>
@@ -98,7 +98,7 @@
                     <property name="icon-name">encoder-knob-symbolic</property>
                     <property name="use-underline">true</property>
                     <property name="child">
-                      <object class="ManualExposurePage" id="manual-page">
+                      <object class="ManualExposurePage" id="manual_page_widget">
                       </object>
                     </property>
                   </object>

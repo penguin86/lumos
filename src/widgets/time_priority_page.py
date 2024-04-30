@@ -23,4 +23,9 @@ from gi.repository import Gtk
 @Gtk.Template(resource_path='/eu/ichibi/Lumos/widgets/time_priority_page.ui')
 class TimePriorityPage(Gtk.Box):
     __gtype_name__ = 'TimePriorityPage'
-    
+
+    def onValuesChanged(self, isoSpeed: int,  sensorValue: float, sensorUnit: str):
+        # Check the unit is absolute ("lux")
+        if sensorUnit != "lux":
+            return
+

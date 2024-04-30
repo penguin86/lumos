@@ -28,7 +28,12 @@ class LumosWindow(Adw.ApplicationWindow):
     error_banner = Gtk.Template.Child()
     sensor_unit_error_banner = Gtk.Template.Child()
     # Pages
+    aperture_priority_page_widget = Gtk.Template.Child()
+    time_priority_page_widget = Gtk.Template.Child()
+    manual_page_widget = Gtk.Template.Child()
     sensor_readings_page_widget = Gtk.Template.Child()
+    # ISO selector in title bar
+    iso_dropdown = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -49,8 +54,15 @@ class LumosWindow(Adw.ApplicationWindow):
 
     def onSensorRead(self, value: float, unit: str):
         # Called when the light value changed: notify all pages
+        isoSpeed = int(self.iso_dropdown.get_selected_item().get_string()[4:])
+        if self.aperture_priority_page_widget:
+            self.aperture_priority_page_widget.onValuesChanged(isoSpeed, value, unit)
+        if self.time_priority_page_widget:
+            self.time_priority_page_widget.onValuesChanged(isoSpeed, value, unit)
+        if self.manual_page_widget:
+            self.manual_page_widget.onValuesChanged(isoSpeed, value, unit)
         if self.sensor_readings_page_widget:
-            self.sensor_readings_page_widget.onValuesChanged(100, value, unit)
+            self.sensor_readings_page_widget.onValuesChanged(isoSpeed, value, unit)
 
         # Check the unit is absolute ("lux"), otherwise there's no way to convert to an absolute EV value
         if unit != "lux":
