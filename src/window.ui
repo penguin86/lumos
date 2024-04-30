@@ -104,44 +104,16 @@
                   </object>
                 </child>
 
-                <!-- Light page -->
+                <!-- Sensor readings page -->
                 <child>
-                  <object class="AdwViewStackPage" id="light-measure-page">
-                    <property name="name">light-measure-page</property>
+                  <object class="AdwViewStackPage" id="sensor_readings_page">
+                    <property name="name">sensor_readings_page</property>
                     <property name="title" translatable="true">Light</property>
                     <property name="icon-name">lightbulb-symbolic</property>
                     <property name="use-underline">true</property>
                     <property name="child">
-                      <object class="GtkBox">
-                        <property name="orientation">1</property>
-                        <property name="valign">3</property>
-                        <property name="halign">3</property>
-                        <child>
-                          <object class="GtkImage" id="lux-icon">
-                            <property name="icon-name">lightbulb-symbolic</property>
-                            <property name="pixel-size">128</property>
-                            <property name="margin-bottom">30</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="lux_label">
-                            <property name="label" translatable="no">XXX Lux</property>
-                            <style>
-                              <class name="title-1"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="ev_label">
-                            <property name="label" translatable="no">-- EV</property>
-                            <style>
-                              <class name="title-1"/>
-                            </style>
-                          </object>"
-                        </child>
+                      <object class="SensorReadingsPage" id="sensor_readings_page_widget">
                       </object>
-
-
                     </property>
                   </object>
                 </child>

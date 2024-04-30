@@ -36,6 +36,7 @@ lumos_sources = [
   'widgets/time_priority_page.py',
   'widgets/aperture_priority_page.py',
   'widgets/manual_exposure_page.py',
+  'widgets/sensor_readings_page.py',
 ]
 
 install_data(lumos_sources, install_dir: moduledir)
