@@ -1,4 +1,4 @@
-from math import log
+from math import log, sqrt
 
 '''
 This class does all the required math. It is based on the Wikipedia page
@@ -17,8 +17,13 @@ class EVCalculator:
     K = 12.5    # TODO: Add to settings?
 
     def luxToEV(lux: float) -> float:
-        # Wikipedia (https://en.wikipedia.org/wiki/Exposure_value#EV_as_a_measure_of_luminance_and_illuminance)
+        # Wikipedia (https://en.wikipedia.org/wiki/Light_meter#Exposure_equations)
         # says E = 2.5 * (2^EV), so the inverse is EV = ln(2*E/5)/ln(2)
         return log(2*lux/5, 2)
 
+    def calcShutterSpeed(isoSpeed: int, lux: float, aperture: float):
+        return ((aperture^2)*K)/(lux*isoSpeed)
+
+    def calcAperture(isoSpeed: int, lux: float, shutterSpeed: float):
+        return sqrt(lux*isoSpeed*shutterSpeed/K)
 
