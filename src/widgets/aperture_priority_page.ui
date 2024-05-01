@@ -28,7 +28,7 @@
       </object>
     </child>
     <child>
-      <object class="GtkLabel" id="time-priority-aperture-label">
+      <object class="GtkLabel" id="aperture_priority_time_label">
         <property name="label" translatable="no">--s</property>
         <style>
           <class name="lumos-big-result"/>
@@ -43,7 +43,7 @@
       </object>
     </child>
     <child>
-      <object class="GtkDropDown" id="aperture-priority-speed-dropdown">
+      <object class="GtkDropDown" id="aperture_priority_aperture_dropdown">
         <property name="model">
           <object class="GtkStringList">
             <items>

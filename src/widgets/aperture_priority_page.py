@@ -19,13 +19,37 @@
 
 from gi.repository import Adw
 from gi.repository import Gtk
+from .ev_calculator import EVCalculator
 
 @Gtk.Template(resource_path='/eu/ichibi/Lumos/widgets/aperture_priority_page.ui')
 class AperturePriorityPage(Gtk.Box):
     __gtype_name__ = 'AperturePriorityPage'
 
+    # Values of aperture dropdown entries defined in the .ui file
+    aperture_priority_speed_dropdown_values = [
+        1/32,
+        1/22,
+        1/16,
+        1/11,
+        1/8,
+        1/5.6,
+        1/4,
+        1/2.8,
+        1/2,
+        1/1.4
+    ]
+
+    # Widgets
+    aperture_priority_aperture_dropdown = Gtk.Template.Child()
+    aperture_priority_time_label = Gtk.Template.Child()
+
     def onValuesChanged(self, isoSpeed: int,  sensorValue: float, sensorUnit: str):
         # Check the unit is absolute ("lux")
         if sensorUnit != "lux":
             return
+
+        apertureValue = self.aperture_priority_speed_dropdown_values[self.aperture_priority_aperture_dropdown.get_selected()]
+        shutterSpeed = EVCalculator.calcShutterSpeed(isoSpeed, sensorValue, apertureValue)
+        # TODO: Round shutter speed value to nearest existing value and set label color to red if outside 1 stop range
+        self.aperture_priority_time_label.set_label("f/ {:.2f}".format(shutterSpeed))
 

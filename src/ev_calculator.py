@@ -11,10 +11,12 @@ where:
     S is the ISO arithmetic speed
     K is the reflected-light meter calibration constant
 '''
+
+# K is the reflected-light meter calibration constant (unit: cd s/m2 ISO)
+# (https://en.wikipedia.org/wiki/Light_meter#Calibration_constants)
+K = 12.5
+
 class EVCalculator:
-    # K is the reflected-light meter calibration constant (unit: cd s/m2 ISO)
-    # (https://en.wikipedia.org/wiki/Light_meter#Calibration_constants)
-    K = 12.5    # TODO: Add to settings?
 
     def luxToEV(lux: float) -> float:
         # Wikipedia (https://en.wikipedia.org/wiki/Light_meter#Exposure_equations)
@@ -22,8 +24,9 @@ class EVCalculator:
         return log(2*lux/5, 2)
 
     def calcShutterSpeed(isoSpeed: int, lux: float, aperture: float):
-        return ((aperture^2)*K)/(lux*isoSpeed)
+        return (aperture*aperture*K)/(lux*isoSpeed)
 
     def calcAperture(isoSpeed: int, lux: float, shutterSpeed: float):
+        # shutterSpeed is in seconds
         return sqrt(lux*isoSpeed*shutterSpeed/K)
 
