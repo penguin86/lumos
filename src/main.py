@@ -62,7 +62,7 @@ class LumosApplication(Adw.Application):
     def on_about_action(self, widget, _):
         """Callback for the app.about action."""
         about = Adw.AboutWindow(transient_for=self.props.active_window,
-                                application_name='lumos',
+                                application_name='Lumos',
                                 application_icon='eu.ichibi.Lumos',
                                 developer_name='Daniele Verducci',
                                 version='0.1.0',
