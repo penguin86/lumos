@@ -44,3 +44,5 @@ class SensorReadingsPage(Gtk.Box):
         if self.ev_label:
             self.ev_label.set_label("{:.1f} EV".format(ev))
 
+    def onIsoSpeedChanged(self, isoSpeed: int):
+        print("SR: onIsoSpeedChanged {}".format(isoSpeed))

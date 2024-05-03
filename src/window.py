@@ -89,4 +89,16 @@ class LumosWindow(Adw.ApplicationWindow):
         dialog.add_response("close", "Close")
         dialog.choose(self, None, None)
 
+    @Gtk.Template.Callback()
+    def onIsoSpeedChanged(self, dropDown: Gtk.DropDown, _: any) -> None:
+        # Changed ISO value, notify all pages
+        isoSpeed = int(dropDown.get_selected_item().get_string()[4:])
+        if self.aperture_priority_page_widget:
+            self.aperture_priority_page_widget.onIsoSpeedChanged(isoSpeed)
+        if self.time_priority_page_widget:
+            self.time_priority_page_widget.onIsoSpeedChanged(isoSpeed)
+        if self.manual_page_widget:
+            self.manual_page_widget.onIsoSpeedChanged(isoSpeed)
+        if self.sensor_readings_page_widget:
+            self.sensor_readings_page_widget.onIsoSpeedChanged(isoSpeed)
 

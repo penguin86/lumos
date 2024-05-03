@@ -27,6 +27,7 @@
                   </object>
                 </property>
                 <property name="selected">1</property> <!-- ISO 100 -->
+                <signal name="notify::selected-item" handler="onIsoSpeedChanged"/>
               </object>
             </child>
             <child type="end">
@@ -48,7 +49,7 @@
               <object class="AdwBanner" id="error_banner">
                 <property name="title" translatable="true">Unable to access light sensor</property>
                 <property name="button-label" translatable="true">Details</property>
-                <signal name="button-clicked" handler="showErrorDetails"/>"
+                <signal name="button-clicked" handler="showErrorDetails"/>
               </object>
             </child>
             <child>

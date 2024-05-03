@@ -30,3 +30,5 @@ class ManualExposurePage(Gtk.Box):
         if sensorUnit != "lux":
             return
 
+    def onIsoSpeedChanged(self, isoSpeed: int):
+        print("ME: onIsoSpeedChanged {}".format(isoSpeed))
