@@ -60,6 +60,7 @@
             </items>
           </object>
         </property>
+        <signal name="notify::selected-item" handler="onApertureChanged"/>
       </object>
     </child>
   </template>

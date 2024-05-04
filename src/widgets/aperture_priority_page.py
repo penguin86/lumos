@@ -66,3 +66,7 @@ class AperturePriorityPage(Gtk.Box):
         shutterSpeed = EVCalculator.calcShutterSpeed(self.__isoSpeed, self.__sensorValue, apertureValue)
         # TODO: Round shutter speed value to nearest existing value and set label color to red if outside 1 stop range
         self.aperture_priority_time_label.set_label("1/ {:.5f}".format(shutterSpeed))
+
+    @Gtk.Template.Callback()
+    def onApertureChanged(self, dropDown: Gtk.DropDown, _: any):
+        self.updateView()
