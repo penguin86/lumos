@@ -68,6 +68,7 @@
             </items>
           </object>
         </property>
+        <signal name="notify::selected-item" handler="onShutterSpeedChanged"/>
       </object>
     </child>
   </template>

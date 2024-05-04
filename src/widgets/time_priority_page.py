@@ -26,7 +26,7 @@ class TimePriorityPage(Gtk.Box):
     __gtype_name__ = 'TimePriorityPage'
 
     # Values of time dropdown entries defined in the .ui file
-    time_priority_speed_dropdown_values = [
+    __time_priority_speed_dropdown_values = [
         1/4000,
         1/2000,
         1/1000,
@@ -51,22 +51,29 @@ class TimePriorityPage(Gtk.Box):
     time_priority_speed_dropdown = Gtk.Template.Child()
     time_priority_aperture_label = Gtk.Template.Child()
 
-    lastSensorValue = None
+    __sensorValue = None
+    __isoSpeed = 100
 
     def onValuesChanged(self, isoSpeed: int, sensorValue: float, sensorUnit: str):
         # Check the unit is absolute ("lux")
         if sensorUnit != "lux":
             return
 
-        self.lastSensorValue = sensorValue
-        self.updateView(isoSpeed, sensorValue)
+        self.__sensorValue = sensorValue
+        self.__isoSpeed = isoSpeed
+        self.updateView()
 
     def onIsoSpeedChanged(self, isoSpeed: int):
-        if self.lastSensorValue:
-            self.updateView(isoSpeed, self.lastSensorValue)
+        self.__isoSpeed = isoSpeed
+        if self.__sensorValue:
+            self.updateView()
 
-    def updateView(self, isoSpeed: int, sensorValue: float):
-        shutterSpeed = self.time_priority_speed_dropdown_values[self.time_priority_speed_dropdown.get_selected()]
-        apertureValue = EVCalculator.calcAperture(isoSpeed, sensorValue, shutterSpeed)
+    def updateView(self):
+        shutterSpeed = self.__time_priority_speed_dropdown_values[self.time_priority_speed_dropdown.get_selected()]
+        apertureValue = EVCalculator.calcAperture(self.__isoSpeed, self.__sensorValue, shutterSpeed)
         # TODO: Round aperture value to nearest existing value and set label color to red if outside 1 stop range
         self.time_priority_aperture_label.set_label("f/ {:.2f}".format(apertureValue))
+
+    @Gtk.Template.Callback()
+    def onShutterSpeedChanged(self, dropDown: Gtk.DropDown, _: any):
+        self.updateView()
