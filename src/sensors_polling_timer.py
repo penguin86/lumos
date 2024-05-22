@@ -1,6 +1,7 @@
 from gi.repository import Gio, GLib
 from threading import Timer
 from enum import Enum
+import traceback
 
 # window.py
 #
@@ -46,6 +47,7 @@ class SensorsPollingTimer(Timer):
                     self.function(value, unit)    # Invoke callback
 
         except Exception as e:
+            print(traceback.format_exc(e))
             if not self.onError:
                 print("SensorsPollingTimer: error occurred, but no onError callback defined")
                 return

@@ -69,7 +69,6 @@ class LumosWindow(Adw.ApplicationWindow):
             self.sensor_unit_error_banner.set_revealed(True)
 
     def onError(self, e: Exception):
-        print(e)
         self.lastError = e
         self.error_banner.set_revealed(True)
 

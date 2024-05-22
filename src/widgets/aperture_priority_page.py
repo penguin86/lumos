@@ -26,25 +26,15 @@ class AperturePriorityPage(Gtk.Box):
     __gtype_name__ = 'AperturePriorityPage'
 
     # Values of aperture dropdown entries defined in the .ui file
-    __aperture_priority_speed_dropdown_values = [
-        1/32,
-        1/22,
-        1/16,
-        1/11,
-        1/8,
-        1/5.6,
-        1/4,
-        1/2.8,
-        1/2,
-        1/1.4
-    ]
+    # TODO: Load dropdown strings from APERTURE_VALUES.values()
+    __aperture_priority_speed_dropdown_values = list(EVCalculator.APERTURE_VALUES.keys())
 
     # Widgets
     aperture_priority_aperture_dropdown = Gtk.Template.Child()
     aperture_priority_time_label = Gtk.Template.Child()
 
     __sensorValue = None
-    __isoSpeed = 100
+    __isoSpeed = EVCalculator.DEFAULT_ISO_SPEED
 
     def onValuesChanged(self, isoSpeed: int, sensorValue: float, sensorUnit: str):
         # Check the unit is absolute ("lux")
@@ -64,9 +54,16 @@ class AperturePriorityPage(Gtk.Box):
     def updateView(self):
         apertureValue = self.__aperture_priority_speed_dropdown_values[self.aperture_priority_aperture_dropdown.get_selected()]
         shutterSpeed = EVCalculator.calcShutterSpeed(self.__isoSpeed, self.__sensorValue, apertureValue)
-        # TODO: Round shutter speed value to nearest existing value and set label color to red if outside 1 stop range
-        self.aperture_priority_time_label.set_label("1/ {:.5f}".format(shutterSpeed))
+
+        # Round shutter speed value to nearest existing value and set label color to red if outside 1 stop range
+        [nearestValue, isInsideRange] = EVCalculator.toNearestStr(shutterSpeed, EVCalculator.SHUTTER_SPEED_VALUES)
+
+        if isInsideRange:
+            self.aperture_priority_time_label.set_label(nearestValue)
+        else:
+            self.aperture_priority_time_label.set_label("<span foreground=\"red\">{}</span>".format(nearestValue))
 
     @Gtk.Template.Callback()
     def onApertureChanged(self, dropDown: Gtk.DropDown, _: any):
         self.updateView()
+
